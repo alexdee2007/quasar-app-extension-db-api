@@ -2,12 +2,12 @@ import axios from 'axios';
 import { Notify, Loading } from 'quasar';
 
 // API
-import decreeApi from 'api/decree';
-import dictApi from 'api/dict';
-import minioApi from 'api/minio';
-import modelApi from 'api/model';
-import routerApi from 'api/router';
-import visicomApi from 'api/visicom';
+import decreeApi from './api/decree';
+import dictApi from './api/dict';
+import minioApi from './api/minio';
+import modelApi from './api/model';
+import routerApi from './api/router';
+import visicomApi from './api/visicom';
 
 // ERR NOTIFY
 const errorHandler = error => {
