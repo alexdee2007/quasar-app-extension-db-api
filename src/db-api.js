@@ -56,7 +56,7 @@ axiosInstance.interceptors.response.use(response => response, errorHandler);
 axiosInstanceDictionary.interceptors.response.use(response => response, errorHandler);
 axiosInstanceVisicom.interceptors.response.use(response => response, errorHandler);
 
-export const API = {
+export default {
 
   decree: decreeApi(axiosInstance),
   dict: dictApi(axiosInstanceDictionary),
