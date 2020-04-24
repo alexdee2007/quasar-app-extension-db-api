@@ -7,11 +7,6 @@ export default $axios => ({
       return data;
     },
 
-    deleteByIds: async (model, ids) => {
-      const {data} = await $axios.delete(`/${pluralize(model)}`, {data: {ids}});
-      return data;
-    },
-
     find: async (model, filter = {}) => {
       filter = encodeURI(JSON.stringify(filter));
       const {data} = await $axios.get(`/${pluralize(model)}?filter=${filter}`);
