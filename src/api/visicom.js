@@ -31,7 +31,7 @@ export default $axios => ({
     },
 
     reverseGeocode: async (latlng, lang) => {
-      const {data} = await $axios.get(`/${lang || 'uk'}/search/adr_address,adr_street,adm_settlement,adm_level2,adm_level1.json?intersect=${latlng.lng},${latlng.lat}&limit=1&country=ua`);
+      const {data} = await $axios.get(`/${lang || 'uk'}/search/adr_address,adr_street,adm_settlement,adm_level2,adm_level1.json?near=${latlng.lng},${latlng.lat}&radius=1&limit=1&country=ua`);
       return data;
     }
 
