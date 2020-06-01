@@ -38,7 +38,10 @@ const errorHandler = error => {
 };
 
 // INSTANCES
-const axiosInstance = axios.create({
+
+const axiosInstance = axios.create();
+
+const axiosInstanceBase = axios.create({
   withCredentials: true,
   baseURL: `${process.env.BASE_API}/api`
 });
@@ -53,16 +56,18 @@ const axiosInstanceVisicom = axios.create({
 });
 
 axiosInstance.interceptors.response.use(response => response, errorHandler);
+axiosInstanceBase.interceptors.response.use(response => response, errorHandler);
 axiosInstanceDictionary.interceptors.response.use(response => response, errorHandler);
 axiosInstanceVisicom.interceptors.response.use(response => response, errorHandler);
 
 export default {
 
-  decree: decreeApi(axiosInstance),
+  axiosInstance,
+  decree: decreeApi(axiosInstanceBase),
   dict: dictApi(axiosInstanceDictionary),
-  minio: minioApi(axiosInstance),
-  model: modelApi(axiosInstance),
-  router: routerApi(axiosInstance),
+  minio: minioApi(axiosInstanceBase),
+  model: modelApi(axiosInstanceBase),
+  router: routerApi(axiosInstanceBase),
   visicom: visicomApi(axiosInstanceVisicom)
 
 }
