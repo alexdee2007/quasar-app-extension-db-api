@@ -63,7 +63,7 @@ axiosInstance.interceptors.response.use(response => response, errorHandler);
 axiosInstanceBase.interceptors.response.use(response => response, errorHandler);
 axiosInstanceDictionary.interceptors.response.use(response => response, errorHandler);
 axiosInstanceVisicom.interceptors.response.use(response => response, errorHandler);
-axiosInstanceServices.interceptors.response.use(response => response, errorHandler);
+axiosInstanceServices.interceptors.response.use(response => response.data, errorHandler);
 
 export default {
 
