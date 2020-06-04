@@ -2,7 +2,6 @@ import axios from 'axios';
 import { Notify, Loading } from 'quasar';
 
 // API
-import decreeApi from './api/decree';
 import dictApi from './api/dict';
 import minioApi from './api/minio';
 import modelApi from './api/model';
@@ -41,6 +40,10 @@ const errorHandler = error => {
 
 const axiosInstance = axios.create();
 
+const axiosInstanceServices = axios.create({
+  baseURL: `${process.env.SERVICES_API}`
+});
+
 const axiosInstanceBase = axios.create({
   withCredentials: true,
   baseURL: `${process.env.BASE_API}/api`
@@ -55,15 +58,17 @@ const axiosInstanceVisicom = axios.create({
   baseURL: `${process.env.MAP_DATA}`
 });
 
+
 axiosInstance.interceptors.response.use(response => response, errorHandler);
 axiosInstanceBase.interceptors.response.use(response => response, errorHandler);
 axiosInstanceDictionary.interceptors.response.use(response => response, errorHandler);
 axiosInstanceVisicom.interceptors.response.use(response => response, errorHandler);
+axiosInstanceServices.interceptors.response.use(response => response, errorHandler);
 
 export default {
 
   axiosInstance,
-  decree: decreeApi(axiosInstanceBase),
+  services: axiosInstanceServices,
   dict: dictApi(axiosInstanceDictionary),
   minio: minioApi(axiosInstanceBase),
   model: modelApi(axiosInstanceBase),
